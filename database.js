@@ -57,7 +57,6 @@ function getList(page, table, limit) {
  }
 
  //to get the items with a catagory choosen
-
  function getCategory(limit, page, name){
   return new Promise(async (resolve, reject) => {
     try {
@@ -72,6 +71,7 @@ function getList(page, table, limit) {
   });
  }
 
+ //searching item function
 function searchItem(table, input){
   return new Promise(async (resolve, reject)=>{
     try{
@@ -85,13 +85,30 @@ function searchItem(table, input){
   })
 }
 
-//searchItem('product', 'nathan').then(res=>{console.log(res)}).catch(error=>{console.log(error)})
+//page opperation 
+function itemCount(table){
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [rows] = await connection.query('SELECT COUNT(*) FROM ??;',[table]);
+      resolve(rows[0]['COUNT(*)']);
+    } catch(error){
+      reject(error);
+    }
+  })
+}
 
+// itemCount('admin')
+// .then(res=>{console.log(res)})
+// .catch(error=>{
+//   console.log('error occured', error);
+// })
 
  
  module.exports = {
    getItem,
    getList,
    getCategory,
-   searchItem
+   searchItem,
+   itemCount
  }
