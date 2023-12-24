@@ -69,12 +69,12 @@ app.get("/admin/dashboard", lib.authorization, (req, res)=>{
 
 
 //front customer page server set up here
-
+const displayCapacity = 5; //the display capacity goes here
 
 app.route('/')
 .get((req, res)=>{
    let holder = [];
-   db.getList(0, 'product', 24)
+   db.getList(0, 'product', displayCapacity)
    .then(list=>{
       holder[0]=list;
      })
@@ -88,7 +88,11 @@ app.route('/')
       db.getList(0, 'category', Number.MAX_SAFE_INTEGER)
       .then(list=>{
          holder[1]=list;
-         res.json(holder);
+         db.itemCount('product')
+         .then(result=>{
+            result>displayCapacity? holder[2]=true : holder[2]=false;
+            res.json(holder);
+         })
       })
       .catch(err=>{
       console.log('error on the catagory response', err);
@@ -102,9 +106,19 @@ app.route('/')
 
 app.get('/category', (req, res)=>{
    const category = req.query.category;
-   db.getCategory(21, 0, category)
+   let holder = [];
+   db.getCategory(displayCapacity, 0, category)
    .then(list=>{
-      res.json(list);
+      holder[0]=list;
+
+      db.getCategory(Number.MAX_SAFE_INTEGER, 0, category)
+      .then(result=>{
+         result.length>displayCapacity? holder[1]=true : holder[1]=false;
+         res.json(holder);
+      })
+      .catch(error=>{
+         console.log('error retrieving the max element of category', error);
+      })
    })
    .catch(err=>{
       console.log(err);
@@ -113,9 +127,12 @@ app.get('/category', (req, res)=>{
 
 app.get('/search', (req, res)=>{
    const input = req.query.input;
+   let holder = [];
    db.searchItem('product', input)
    .then(list=>{
-      res.json(list);
+      holder[0]=list;
+      holder[0].length>displayCapacity? holder[1]=true : holder[1]=false;
+      res.json(holder);
    })
    .catch(error=>{
       console.log(error); 

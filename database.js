@@ -59,6 +59,14 @@ function getList(page, table, limit) {
  //to get the items with a catagory choosen
  function getCategory(limit, page, name){
   return new Promise(async (resolve, reject) => {
+    if(name==='All'){
+      try {const connection = await pool.getConnection();
+      const rows = await connection.query('SELECT * FROM product LIMIT ? OFFSET ? ;', [limit, page]);
+      connection.release();
+      resolve(rows[0]);} catch(error){
+        reject(error);
+      }
+    }
     try {
       const connection = await pool.getConnection();
       const rows = await connection.query('SELECT * FROM product WHERE category=? LIMIT ? OFFSET ? ;', [name, limit, page]);
