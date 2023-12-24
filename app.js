@@ -27,7 +27,6 @@ app.listen(3000, ()=>{
 
 
 app.route('/admin')
-
 .get((req, res)=>{
    res.sendFile("D:/WORK FLOW/front and back/front/adminPages/logIn.html");
 })
@@ -56,7 +55,6 @@ app.route('/admin')
 
 })
 
-
 app.get("/admin/dashboard", lib.authorization, (req, res)=>{
    console.log(req.user);
    res.render('dashboard', {
@@ -64,6 +62,11 @@ app.get("/admin/dashboard", lib.authorization, (req, res)=>{
    });
  
  });
+//admin server ends here
+
+
+
+
 
 
 

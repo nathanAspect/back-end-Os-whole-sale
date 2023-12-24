@@ -106,11 +106,7 @@ function itemCount(table){
   })
 }
 
-// itemCount('admin')
-// .then(res=>{console.log(res)})
-// .catch(error=>{
-//   console.log('error occured', error);
-// })
+
 
  
  module.exports = {
