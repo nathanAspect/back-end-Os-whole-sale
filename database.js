@@ -28,8 +28,7 @@ function getItem(target, table, pk) {
      try {
        const connection = await pool.getConnection();
        const [rows] = await connection.query('SELECT ?? FROM ?? WHERE name = ?', [target, table, pk]);
-       connection.release();
- 
+       connection.release(); 
        if (rows.length === 0) {
         reject(new Error('The user name is invalid!'));
        } else {
@@ -48,8 +47,7 @@ function getList(page, table, limit) {
        const connection = await pool.getConnection();
        const rows = await connection.query('SELECT * FROM ?? LIMIT ? OFFSET ?;', [table, limit, page]);
        connection.release();
-
-         resolve(rows[0]); // Return the list
+        resolve(rows[0]); // Return the list
      } catch (error) {
        reject(error);
      }

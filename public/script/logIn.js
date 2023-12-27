@@ -6,12 +6,14 @@ const passwordMis = document.querySelector('.passwordMis');
 const userIn = document.querySelector('#userName');
 const passIn = document.querySelector('#password');
 
+const url = 'http://localhost:3000';
+
 form.addEventListener('submit', event => {
   event.preventDefault();
   const user_name = userName.value;
   const password1 = password.value;
 
-  fetch('http://localhost:3000/admin', {
+  fetch(url + '/login', {
     method: 'POST',
     body: JSON.stringify({ userName: user_name, password: password1 }),
     headers: {
@@ -37,7 +39,7 @@ form.addEventListener('submit', event => {
        } else if (data.response === 'authorized') {
 
 
-
+          window.location.href = '/dashboard';
           //console.log('cookie prolly sent');
           // fetch('/admin/dashboard', {
           //   method: 'GET',

@@ -13,6 +13,7 @@ const { regexpToText } = require('nodemon/lib/utils');
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 app.set('view engine', 'ejs');
@@ -27,24 +28,23 @@ app.listen(3000, ()=>{
 
 
 
-app.route('/admin')
+app.route('/login')
 .get((req, res)=>{
    res.render('login.ejs');
 })
-
 .post((req, res)=>{
    const name = req.body.userName;
    const password = req.body.password;
+   const maxAgeOfCookie = 3600000;//max age of the cookie is set here, and the token needs chage if wanted to change this   
    db.getItem("password", "admin", name)
    .then(result=>{
-      const passwordReturned = result;
-      
-      if(result){ //here i want it to hash, bycrypt compare, i want it to be hashed//////////////////////
+      const passwordReturned = result;      
+      if(result){ //here i want it to hash, bycrypt compare, i want it to be hashed
             if(password===passwordReturned){
                lib.generateToken(name)
                .then(token=>{
-                  res.cookie('tokenCookie', token);
-                  res.json({ response: 'authorized', token: token });
+                  res.cookie('tokenCookie', token, {maxAge: maxAgeOfCookie});
+                  res.json({ response: 'authorized'});
                })
             } else{
                res.json({response: 0});               
@@ -56,13 +56,16 @@ app.route('/admin')
    })
 })
 
-app.get("/admin/dashboard", lib.authorization, (req, res)=>{
-   //console.log(req.user);
-   res.render('dashboard', {
-      user: 'nathan' //req.user.adminId
-   });
- 
- });
+//dashboard route handlers start here
+app.get('/logout', (req, res)=>{
+   res.cookie('tokenCookie', '', { maxAge: 1});
+   res.redirect('/login');
+})
+
+app.route('/dashboard')
+.get(lib.validateCookie, (req, res)=>{
+   res.render('dashboard');
+})
 //admin server ends here
 
 

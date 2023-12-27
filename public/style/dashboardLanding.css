@@ -1,0 +1,227 @@
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: Montserrat, Helvetica, sans-serif;
+   transition: .5s;
+}
+
+::-webkit-scrollbar {
+   width: 0;
+ }
+
+body{
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+}
+
+.sideMenu{
+   width: 300px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   box-shadow: 5px 0 7px rgba(0, 0, 0, 0.089);
+   display: flex;
+   flex-direction: column;
+   justify-content: start;
+   align-items: start;
+}
+
+.logo{
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   padding: 20px;
+   width: 100%;
+   border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.logo img{
+   width: 50px;
+}
+
+.logo p{
+   width: 300px;
+   font-size: 24px;
+   margin-left: 10px;
+}
+
+.menu{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: start;
+   padding: 30px;
+   margin-left: 20px;
+}
+
+.menuOption{
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   margin: 10px 0;
+   padding: 10px;
+   width: 200px;
+   border-radius: 5px;
+   box-shadow: 3px 3px 7px rgba(22, 22, 22, 0.171);
+   cursor: pointer;
+}
+
+.menuOption:hover{
+   background-color: rgb(223, 223, 223);
+}
+
+.menuOption img{
+   width: 35px;
+}
+
+.menuOption p{
+   margin-left: 10px;
+   color: rgb(78, 78, 78);
+   font-size: 17px;
+}
+
+#ManageAll{
+   background-color: rgba(76, 110, 248, 0.733);
+}
+
+#ManageAll p{
+   color: rgba(255, 255, 255, 0.842);
+}
+
+#ManageAll:hover{
+   background-color: rgba(76, 110, 248, 0.555);
+}
+
+.contentHolder{
+   flex: 1;
+   margin-left: 300px;
+   margin-right: 10px;
+}
+
+.contentNav{
+   width: 100%;
+   height: 200px;
+   background-color: rgb(76, 110, 248);
+   border-radius: 0 0 10px 10px;
+   display: flex;
+   align-items: start;
+   justify-content: space-between;
+   padding: 20px;
+}
+
+.searchBar{
+   display: flex;
+   align-items: center;
+}
+
+.searchBar input{
+   border: none;
+   outline: none;
+   height: 40px;
+   width: 250px;
+   background-color: rgba(255, 255, 255, 0.158);
+   border-radius: 20px 0 0 20px;
+   padding: 20px;
+   color: rgba(255, 255, 255, 0.808);
+   font-size: 16px;
+}
+
+.searchBar input::placeholder{
+   color: rgba(255, 255, 255, 0.719);
+}
+
+.searchBar button{
+   width: 45px;
+   height: 40px;
+   border: none;
+   background-color: rgba(255, 255, 255, 0.158);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 0 20px 20px 0;
+}
+
+.searchBar button:hover{
+   background-color: rgba(255, 255, 255, 0.26);
+}
+
+.searchBar button img{
+   width: 30px;
+   opacity: .8;
+}
+
+.profile{
+   position: relative;
+}
+
+.profile:hover .profilePop{
+   opacity: 1;
+   display: flex;
+}
+
+.profile img{
+   width: 55px;
+}
+
+.profilePop{
+   position: absolute;
+   top: 100%;
+   left: 0;
+   transform: translateX(-80%);
+   background-color: white;
+   box-shadow: 0 0 7px rgba(22, 22, 22, 0.267);
+   width: 170px;
+   padding: 15px;
+   display: none;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 10px 0 10px 10px;
+   opacity: 0;
+}
+
+.profilePop:hover{
+   display: flex;
+}
+
+.profilePop p{
+   color: rgba(0, 0, 0, 0.692);
+   font-size: 19px;
+   text-align: center;
+}
+
+.profilePop a{
+   text-decoration: none;
+   border: none;
+   color: white;
+   background-color: rgb(255, 123, 0);
+   padding: 7px;
+   font-size: 15px;
+   border-radius: 5px;
+   margin: 7px 0;
+}
+
+.profilePop a:hover{
+   background-color: rgb(228, 145, 68);
+}
+
+.detail{
+   width: 95%;
+   margin: -80px auto;
+   padding: 20px;
+   border-radius: 10px;
+   background-color: white;
+   box-shadow: 0 0 7px rgba(22, 22, 22, 0.24);
+}
+
+.footer{
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+}

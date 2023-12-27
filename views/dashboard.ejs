@@ -1,15 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dashboard</title>
-</head>
-<body>
-   <p>
-      <%= user %>
-      dash here
-   </p>
+<%- include('header.ejs') %>
 
-</body>
-</html>
+
+
+
+<body>
+   <div class="sideMenu">
+      <div class="logo">
+         <img src="/resources/logo.png" alt="logo">
+         <p>OS wholesale</p>
+      </div>
+      <div class="menu">
+
+         <div class="menuOption">
+            <img src="/resources/dashboard.png" alt="dashboard icon">
+            <p>Dashboard</p>
+         </div>
+
+         <div class="menuOption">
+            <img src="/resources/category.png" alt="category icon">
+            <p>Categories</p>
+         </div>
+
+         <div class="menuOption">
+            <img src="/resources/product.png" alt="product icon">
+            <p>Products</p>
+         </div>
+
+         <div class="menuOption">
+            <img src="/resources/user.png" alt="user icon">
+            <p>Account</p>
+         </div>
+
+         <div class="menuOption" id="ManageAll">
+            <img src="/resources/owner.png" alt="manager icon">
+            <p>MANAGE ALL</p>
+         </div>
+
+      </div>
+   </div>
+   <div class="contentHolder">
+      <div class="contentNav">
+         <div class="searchBar">
+            <input type="text" placeholder="Search here">
+            <button><img src="/resources/search.png" alt="search icon"></button>
+         </div>
+
+         <div class="profile">
+            <img src="/resources/user.png" alt="user icon">
+            <div class="profilePop">
+               <p>Nathan</p>
+               <a href="/logout" class="logout">Log out!</a>
+            </div>
+         </div>
+         
+      </div>
+
+      <div class="detail">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ab saepe voluptate modi ex ducimus quam non beatae asperiores nostrum quo quibusdam totam optio, dolor sunt omnis, corporis aliquam hic provident, nihil culpa. Expedita nesciunt itaque voluptatem voluptates neque incidunt hic voluptatibus labore consequatur minus non dolore quisquam veritatis impedit quibusdam delectus, aperiam molestiae est fuga nam eaque rem exercitationem sint quia. Amet voluptatibus, corporis consequuntur culpa aliquam beatae quam obcaecati asperiores, ipsa debitis tenetur quibusdam cumque. Assumenda sint earum eius rem delectus autem rerum est, sunt nihil animi dolorem ipsa mollitia magni ipsam quibusdam molestias velit iure laborum temporibus ab. Dicta sequi culpa at quos impedit nostrum quasi totam numquam fugit, possimus quidem eius sunt? Repellat recusandae voluptate hic reprehenderit assumenda fuga autem modi quaerat esse excepturi mollitia ad possimus, ipsum, pariatur voluptates, consequatur sequi voluptatum officia voluptatem sapiente corporis ducimus. Reiciendis repudiandae veniam at ullam esse quia odit doloremque quaerat impedit qui? Nisi exercitationem, recusandae dolorem excepturi odio alias assumenda quia est. Unde, autem veritatis, quasi dolor ullam dolore cumque, cum reiciendis tenetur itaque ratione enim omnis quisquam molestias minima expedita ab. Veniam eos labore, omnis facilis quia mollitia temporibus minima illo praesentium quo, consequatur alias iusto quae.
+      </div>
+
+
+
+
+
+
+
+
+
+         <div class="footer">
+            <p>2024 © Influence - Designed by nathanantenehpersonal@gmail.com</p>
+         </div>
+      </div>
+      <!-- <script src="/script/dashboard"></script> -->
+      </body>
+      </html>
