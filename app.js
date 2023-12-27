@@ -64,7 +64,11 @@ app.get('/logout', (req, res)=>{
 
 app.route('/dashboard')
 .get(lib.validateCookie, (req, res)=>{
-   res.render('dashboard');
+   if(req.user.status === 'owner'){
+      res.render('dashboard', { display: 'flex'});
+   } else{
+      res.render('dashboard', { display: 'none'});
+   }
 })
 //admin server ends here
 
