@@ -31,7 +31,7 @@ function getItem(target, table, pk) {
        connection.release();
  
        if (rows.length === 0) {
-         resolve(-1); // User doesn't exist
+        reject(new Error('The user name is invalid!'));
        } else {
          resolve(rows[0][target]); // Return the target
        }
@@ -60,19 +60,20 @@ function getList(page, table, limit) {
  function getCategory(limit, page, name){
   return new Promise(async (resolve, reject) => {
     if(name==='All'){
-      try {const connection = await pool.getConnection();
-      const rows = await connection.query('SELECT * FROM product LIMIT ? OFFSET ? ;', [limit, page]);
-      connection.release();
-      resolve(rows[0]);} catch(error){
+      try {
+        const connection = await pool.getConnection();
+        const rows = await connection.query('SELECT * FROM product LIMIT ? OFFSET ? ;', [limit, page]);
+        connection.release();
+        resolve(rows[0]);
+      } catch(error){
         reject(error);
       }
     }
     try {
       const connection = await pool.getConnection();
-      const rows = await connection.query('SELECT * FROM product WHERE category=? LIMIT ? OFFSET ? ;', [name, limit, page]);
+      const rows = await connection.query('SELECT * FROM product WHERE category=? LIMIT ? OFFSET ? ;', [name, limit, page])
       connection.release();
-
-        resolve(rows[0]); // Return the list
+      resolve(rows[0]); // Return the list
     } catch (error) {
       reject(error);
     }

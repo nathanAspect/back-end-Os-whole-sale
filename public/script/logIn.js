@@ -38,21 +38,21 @@ form.addEventListener('submit', event => {
 
 
 
-          console.log('Bearer ' + data.token);
-          fetch('/admin/dashboard', {
-            method: 'GET',
-            headers: {
-              'Authorization': 'Bearer ' + data.token
-            }
-          })
-          .then(response => {
-            if (response.ok) {
-              //window.location.href = '/admin/dashboard';
-            } else {
-              console.error('Error:', response.statusText);
-            }
-          })
-          .catch(error => console.error(error));
+          //console.log('cookie prolly sent');
+          // fetch('/admin/dashboard', {
+          //   method: 'GET',
+          //   headers: {
+          //     'Authorization': 'Bearer ' + data.token
+          //   }
+          // })
+          // .then(response => {
+          //   if (response.ok) {
+          //     //window.location.href = '/admin/dashboard';
+          //   } else {
+          //     console.error('Error:', response.statusText);
+          //   }
+          // })
+          // .catch(error => console.error(error));
 
 
 

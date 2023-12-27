@@ -8,6 +8,7 @@ const lib = require("./library.js");
 const cors = require('cors');
 //const { response } = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const { regexpToText } = require('nodemon/lib/utils');
 
 const app = express();
@@ -28,7 +29,7 @@ app.listen(3000, ()=>{
 
 app.route('/admin')
 .get((req, res)=>{
-   res.sendFile("D:/WORK FLOW/front and back/front/adminPages/logIn.html");
+   res.render('login.ejs');
 })
 
 .post((req, res)=>{
@@ -37,26 +38,26 @@ app.route('/admin')
    db.getItem("password", "admin", name)
    .then(result=>{
       const passwordReturned = result;
-      if(passwordReturned===-1){ 
-         res.json({response: -1}); } 
-      else{ 
+      
+      if(result){ //here i want it to hash, bycrypt compare, i want it to be hashed//////////////////////
             if(password===passwordReturned){
-               lib.generateToken(name).then(token=>{
+               lib.generateToken(name)
+               .then(token=>{
+                  res.cookie('tokenCookie', token);
                   res.json({ response: 'authorized', token: token });
                })
             } else{
                res.json({response: 0});               
             }
       }
-
-   }).catch(err=>{
-      console.log("something went wrong", err);
    })
-
+   .catch(err=>{
+      res.json({response: -1});
+   })
 })
 
 app.get("/admin/dashboard", lib.authorization, (req, res)=>{
-   console.log(req.user);
+   //console.log(req.user);
    res.render('dashboard', {
       user: 'nathan' //req.user.adminId
    });

@@ -39,7 +39,7 @@ function generateToken(adminId) {
   
 function authorization(req, res, next) {
   const authHeader = req.headers.authorization;
-  console.log(authHeader);
+  //console.log(authHeader);
   const token = authHeader && authHeader.split(' ')[1];
   if(token==null){ 
       console.log('lib section in the token null');
@@ -47,7 +47,6 @@ function authorization(req, res, next) {
       }
       jwt.verify(token, process.env.secret_Key, (err, decoded) => {
         if (err) {
-          console.log('lib section in the if')
           return res.sendStatus(401);
         } else {
           req.user = decoded;
@@ -60,7 +59,7 @@ function authorization(req, res, next) {
  function getAuthorizationHeader(req) {
   return new Promise((resolve, reject) => {
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
+    //console.log(authHeader);
     if (authHeader) {
       resolve(authHeader);
     } else {
