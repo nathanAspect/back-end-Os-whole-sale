@@ -11,31 +11,36 @@
       </div>
       <div class="menu">
 
-         <div class="menuOption">
+         <div class="menuOption" onclick="window.location.href = '/dashboard'">
             <img src="/resources/dashboard.png" alt="dashboard icon">
             <p>Dashboard</p>
          </div>
 
-         <div class="menuOption">
+         <div class="menuOption" onclick="window.location.href = '/dashboard/categories'">
             <img src="/resources/category.png" alt="category icon">
             <p>Categories</p>
          </div>
 
-         <div class="menuOption">
+         <div class="menuOption" onclick="window.location.href = '/dashboard/products'">
             <img src="/resources/product.png" alt="product icon">
             <p>Products</p>
          </div>
 
-         <div class="menuOption">
+         <div class="menuOption" onclick="window.location.href = '/dashboard/account'">
             <img src="/resources/user.png" alt="user icon">
             <p>Account</p>
          </div>
 
-         <div class="menuOption" id="ManageAll" style="display: <%= display %>;" >
+         <div class="menuOption" id="ManageAll" onclick="window.location.href = '/manage'">
             <img src="/resources/owner.png" alt="manager icon">
             <p>MANAGE ALL</p>
          </div>
-
+         <style>
+            #ManageAll{
+               display: <%= displayValue %>;
+            }
+         </style>
+         
       </div>
    </div>
    <div class="contentHolder">
@@ -48,7 +53,7 @@
          <div class="profile">
             <img src="/resources/user.png" alt="user icon">
             <div class="profilePop">
-               <p>Nathan</p>
+               <p> <%= userName %> </p>
                <a href="/logout" class="logout">Log out!</a>
             </div>
          </div>
@@ -56,7 +61,10 @@
       </div>
 
       <div class="detail">
-         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ab saepe voluptate modi ex ducimus quam non beatae asperiores nostrum quo quibusdam totam optio, dolor sunt omnis, corporis aliquam hic provident, nihil culpa. Expedita nesciunt itaque voluptatem voluptates neque incidunt hic voluptatibus labore consequatur minus non dolore quisquam veritatis impedit quibusdam delectus, aperiam molestiae est fuga nam eaque rem exercitationem sint quia. Amet voluptatibus, corporis consequuntur culpa aliquam beatae quam obcaecati asperiores, ipsa debitis tenetur quibusdam cumque. Assumenda sint earum eius rem delectus autem rerum est, sunt nihil animi dolorem ipsa mollitia magni ipsam quibusdam molestias velit iure laborum temporibus ab. Dicta sequi culpa at quos impedit nostrum quasi totam numquam fugit, possimus quidem eius sunt? Repellat recusandae voluptate hic reprehenderit assumenda fuga autem modi quaerat esse excepturi mollitia ad possimus, ipsum, pariatur voluptates, consequatur sequi voluptatum officia voluptatem sapiente corporis ducimus. Reiciendis repudiandae veniam at ullam esse quia odit doloremque quaerat impedit qui? Nisi exercitationem, recusandae dolorem excepturi odio alias assumenda quia est. Unde, autem veritatis, quasi dolor ullam dolore cumque, cum reiciendis tenetur itaque ratione enim omnis quisquam molestias minima expedita ab. Veniam eos labore, omnis facilis quia mollitia temporibus minima illo praesentium quo, consequatur alias iusto quae.
+         
+
+         <%- include(presentContent) %> 
+
       </div>
 
 

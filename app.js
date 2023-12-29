@@ -64,11 +64,76 @@ app.get('/logout', (req, res)=>{
 
 app.route('/dashboard')
 .get(lib.validateCookie, (req, res)=>{
+   let display = null;
    if(req.user.status === 'owner'){
-      res.render('dashboard', { display: 'flex'});
+      display = 'flex';
    } else{
-      res.render('dashboard', { display: 'none'});
+      display = 'none';
    }
+
+   res.render('dashboard', { presentContent: 'dashboardContent.ejs' ,displayValue: display, userName: req.user.adminId});
+})
+
+app.route('/dashboard/categories')
+.get(lib.validateCookie, (req, res)=>{
+   let display = null;
+   if(req.user.status === 'owner'){
+      display = 'flex';
+   } else{
+      display = 'none';
+   }
+
+   db.adminCategory('category', req.user.adminId)
+   .then(list=>{
+      const promises = [];
+
+      for(let i = 0; i<list.length; i++){
+         const promise = db.getTotalRedirect(list[i].name)
+         .then(res=>{
+            list[i].totalVisit = res;
+         })
+         .catch(error=>{
+            console.log('error while getting the total count', error);
+         })          
+         promises.push(promise);
+      }
+      Promise.all(promises)
+      .then(()=>{
+         console.log(list[0].totalVisit);
+         res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId });
+      })
+      .catch(err=>{
+         console.log(err);
+      })      
+   })
+   .catch(err=>{
+      console.log(err);
+   })
+   // res.render('dashboard', { presentContent: 'category.ejs' ,displayValue: display, userName: req.user.adminId});
+})
+
+app.route('/dashboard/products')
+.get(lib.validateCookie, (req, res)=>{
+   let display = null;
+   if(req.user.status === 'owner'){
+      display = 'flex';
+   } else{
+      display = 'none';
+   }
+
+   res.render('dashboard', { presentContent: 'product.ejs' ,displayValue: display, userName: req.user.adminId});
+})
+
+app.route('/dashboard/account')
+.get(lib.validateCookie, (req, res)=>{
+   let display = null;
+   if(req.user.status === 'owner'){
+      display = 'flex';
+   } else{
+      display = 'none';
+   }
+
+   res.render('dashboard', { presentContent: 'account.ejs' ,displayValue: display, userName: req.user.adminId});
 })
 //admin server ends here
 

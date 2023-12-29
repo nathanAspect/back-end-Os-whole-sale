@@ -70,7 +70,7 @@ body{
 }
 
 .menuOption:hover{
-   background-color: rgb(223, 223, 223);
+   background-color: rgb(201, 201, 201);
 }
 
 .menuOption img{
@@ -84,7 +84,7 @@ body{
 }
 
 #ManageAll{
-   background-color: rgba(76, 110, 248, 0.733);
+   background-color: rgb(76, 110, 248);
 }
 
 #ManageAll p{
@@ -92,7 +92,7 @@ body{
 }
 
 #ManageAll:hover{
-   background-color: rgba(76, 110, 248, 0.555);
+   background-color: rgba(29, 29, 29, 0.856);
 }
 
 .contentHolder{
@@ -180,6 +180,7 @@ body{
    align-items: center;
    border-radius: 10px 0 10px 10px;
    opacity: 0;
+   z-index: 100;
 }
 
 .profilePop:hover{
@@ -204,7 +205,7 @@ body{
 }
 
 .profilePop a:hover{
-   background-color: rgb(228, 145, 68);
+   background-color: rgba(29, 29, 29, 0.856);
 }
 
 .detail{
@@ -224,4 +225,59 @@ body{
    position: absolute;
    bottom: 0;
    right: 0;
+}
+
+
+/* table for the catagory section */
+.table-container {
+   max-height: 300px;
+   overflow-y: auto;
+ }
+
+ table {
+   border-collapse: collapse;
+   width: 100%;
+   table-layout: auto;
+ }
+
+ .table-header {
+   position: sticky;
+   top: 0;
+   background-color: rgb(76, 110, 248);
+   color: white;
+   font-weight: bold;
+ }
+
+ th, td {
+   border: none;
+   padding: 10px;
+   text-align: left;
+ }
+
+ .tableRow:hover{
+   background-color: rgb(204, 204, 204);
+ }
+
+/* no category found text style */
+.table-container p{
+   text-align: center;
+   font-size: 24px;
+   margin: 30px;
+   color: rgba(0, 0, 0, 0.589);
+}
+
+/* add new catagory button */
+
+.addNewBtn{
+   border: none;
+   background-color: rgb(76, 110, 248);
+   font-size: 18px;
+   color: white;
+   border-radius: 0 0 0 15px;
+   padding: 10px;
+   margin: 20px auto;
+}
+
+.addNewBtn:hover{
+   background-color: rgba(29, 29, 29, 0.856);
 }

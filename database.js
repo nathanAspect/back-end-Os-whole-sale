@@ -83,7 +83,7 @@ function searchItem(table, input){
   return new Promise(async (resolve, reject)=>{
     try{
       const connection = await pool.getConnection();
-      const rows = await connection.query('SELECT * FROM ?? WHERE name LIKE ? OR description LIKE ?', [table, `%${input}%`, `%${input}%`]);
+      const rows = await connection.query('SELECT * FROM ?? WHERE name LIKE ?', [table, `%${input}%`, `%${input}%`]);
       connection.release();
       resolve(rows[0]);
     } catch(error){
@@ -105,7 +105,45 @@ function itemCount(table){
   })
 }
 
+//function to get all the categroies of a user
+function adminCategory(table, name){
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [rows] = await connection.query('SELECT * FROM ?? WHERE admin = ?;',[table, name]);
+      resolve(rows);
+    } catch(error){
+      reject(error);
+    }
+  })
+}
 
+//function to get the totall redirect of the products in a category
+function getTotalRedirect(category){
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [row] = await connection.query('SELECT SUM(visit) AS total_visits FROM product WHERE category = ?;',[category]);
+      resolve(Number(row[0].total_visits));
+    } catch(error){
+      reject(error);
+    }
+  })
+}
+// adminCategory('category', 'nati')
+// .then(result=>{
+//   console.log(result)
+// })
+// .catch(err=>{
+//   console.log(err);
+// })
+// getTotalRedirect('soft drink')
+// .then(res=>{
+//   console.log(res)
+// })
+// .catch(err=>{
+//   console.log(err)
+// })
 
  
  module.exports = {
@@ -113,5 +151,7 @@ function itemCount(table){
    getList,
    getCategory,
    searchItem,
-   itemCount
+   itemCount,
+   adminCategory,
+   getTotalRedirect
  }

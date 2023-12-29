@@ -37,27 +37,8 @@ form.addEventListener('submit', event => {
             passwordMis.style.opacity = 0;
          }, 2000)
        } else if (data.response === 'authorized') {
-
-
           window.location.href = '/dashboard';
-          //console.log('cookie prolly sent');
-          // fetch('/admin/dashboard', {
-          //   method: 'GET',
-          //   headers: {
-          //     'Authorization': 'Bearer ' + data.token
-          //   }
-          // })
-          // .then(response => {
-          //   if (response.ok) {
-          //     //window.location.href = '/admin/dashboard';
-          //   } else {
-          //     console.error('Error:', response.statusText);
-          //   }
-          // })
-          // .catch(error => console.error(error));
-
-
-
+          
         } else{
           console.log("something went wrong!");
        }

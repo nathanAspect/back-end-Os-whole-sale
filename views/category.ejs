@@ -1,0 +1,49 @@
+<div class="table-container">
+   <table>
+     <thead>
+       <tr class="table-header">
+         <th>Category</th>
+         <th>Owner</th>
+         <th>Visit</th>
+         <th>Total Redirect</th>
+       </tr>
+     </thead>
+     <tbody>
+
+
+
+
+      <% for(let i=0; i<list.length; i++){ %>
+        <tr class="tableRow">
+          <td> <%= list[i].name %> </td>
+          <td> <%= list[i].Admin %> </td>
+          <td> <%= list[i].Visit %> </td>
+          <td> <%= list[i].totalVisit %> </td>
+        </tr class="tableRow">
+      <% } %>
+
+
+
+
+
+
+       <!-- <tr class="tableRow">
+         <td>Row 1, Cell 1</td>
+         <td>Row 1, Cell 2</td>
+         <td>Row 1, Cell 3</td>
+         <td>Row 1, Cell 4</td>
+       </tr class="tableRow"> -->
+       
+       <!-- Add more rows as needed -->
+     </tbody>
+   </table>
+   
+   <p>No Catagory found!</p>
+   <style>
+      .table-container p{
+         display: none;
+      }
+   </style>
+ </div>
+
+    <button class="addNewBtn">Add new Category</button>
