@@ -281,3 +281,42 @@ body{
 .addNewBtn:hover{
    background-color: rgba(29, 29, 29, 0.856);
 }
+
+/* add new category option */
+.addNewCategory{
+   margin-top: 40px;
+   display: none;
+   justify-content: start;
+   align-items: center;
+}
+
+.addNewCategory form input{
+   margin-left: 10px;
+   border: none;
+   outline: none;
+   background-color: rgb(231, 231, 231);
+   height: 40px;
+   width: 300px;
+   padding: 20px;
+   font-size: 17px;
+   border-radius: 20px 0 0 20px;
+}
+
+.addNewCategory form input:focus{
+   outline:1px solid rgb(76, 110, 248);
+}
+
+.addNewCategory form button{
+   border: none;
+   height: 40px;
+   border-radius: 0 20px 20px 0;
+   background-color: rgb(76, 110, 248);
+   padding: 10px;
+   font-size: 17px;
+   color: white;
+   margin-left: -5px;
+}
+
+.addNewCategory form button:hover{
+   background-color: rgba(29, 29, 29, 0.856);
+}

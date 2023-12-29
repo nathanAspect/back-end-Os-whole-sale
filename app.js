@@ -83,8 +83,11 @@ app.route('/dashboard/categories')
       display = 'none';
    }
 
-   db.adminCategory('category', req.user.adminId)
+   db.adminCategory('category', req.user.adminId, 'admin')
    .then(list=>{
+      if(list.length===0){
+         return res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'block' });
+      }
       const promises = [];
 
       for(let i = 0; i<list.length; i++){
@@ -99,8 +102,7 @@ app.route('/dashboard/categories')
       }
       Promise.all(promises)
       .then(()=>{
-         console.log(list[0].totalVisit);
-         res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId });
+         res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'none' });
       })
       .catch(err=>{
          console.log(err);
@@ -109,7 +111,6 @@ app.route('/dashboard/categories')
    .catch(err=>{
       console.log(err);
    })
-   // res.render('dashboard', { presentContent: 'category.ejs' ,displayValue: display, userName: req.user.adminId});
 })
 
 app.route('/dashboard/products')
@@ -120,8 +121,18 @@ app.route('/dashboard/products')
    } else{
       display = 'none';
    }
+   db.getAdminProducts(req.user.adminId)
+   .then(list=>{
+      if(list.length===0){
+         return res.render('dashboard', { presentContent: 'product.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'block' });
+      }
+      res.render('dashboard', { presentContent: 'product.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'none' });
+   })
+   .catch(err=>{
+      console.log(err);
+   })
 
-   res.render('dashboard', { presentContent: 'product.ejs' ,displayValue: display, userName: req.user.adminId});
+   // res.render('dashboard', { presentContent: 'product.ejs' ,displayValue: display, userName: req.user.adminId});
 })
 
 app.route('/dashboard/account')

@@ -98,6 +98,7 @@ function itemCount(table){
     try{
       const connection = await pool.getConnection();
       const [rows] = await connection.query('SELECT COUNT(*) FROM ??;',[table]);
+      connection.release();
       resolve(rows[0]['COUNT(*)']);
     } catch(error){
       reject(error);
@@ -106,11 +107,12 @@ function itemCount(table){
 }
 
 //function to get all the categroies of a user
-function adminCategory(table, name){
+function adminCategory(table, name, target){
   return new Promise(async (resolve, reject)=>{
     try{
       const connection = await pool.getConnection();
-      const [rows] = await connection.query('SELECT * FROM ?? WHERE admin = ?;',[table, name]);
+      const [rows] = await connection.query('SELECT * FROM ?? WHERE ?? = ?;',[table, target, name]);
+      connection.release();
       resolve(rows);
     } catch(error){
       reject(error);
@@ -124,9 +126,25 @@ function getTotalRedirect(category){
     try{
       const connection = await pool.getConnection();
       const [row] = await connection.query('SELECT SUM(visit) AS total_visits FROM product WHERE category = ?;',[category]);
+      connection.release();
       resolve(Number(row[0].total_visits));
     } catch(error){
       reject(error);
+    }
+  })
+}
+
+//function that gets all the products related to the admin
+function getAdminProducts(admin){
+  const queryString = 'SELECT Product.name, Product.Category, Product.Price, Product.Qunitity, Product.visit FROM Product INNER JOIN category ON Product.Category = category.name INNER JOIN admin ON category.Admin = admin.name WHERE admin.name = ?;'
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [row] = await connection.query(queryString,[admin])
+      connection.release();
+      resolve(row);
+    } catch(err){
+      reject(err);
     }
   })
 }
@@ -137,7 +155,7 @@ function getTotalRedirect(category){
 // .catch(err=>{
 //   console.log(err);
 // })
-// getTotalRedirect('soft drink')
+// getAdminProducts('nati')
 // .then(res=>{
 //   console.log(res)
 // })
@@ -153,5 +171,6 @@ function getTotalRedirect(category){
    searchItem,
    itemCount,
    adminCategory,
-   getTotalRedirect
+   getTotalRedirect,
+   getAdminProducts
  }

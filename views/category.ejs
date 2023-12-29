@@ -41,9 +41,21 @@
    <p>No Catagory found!</p>
    <style>
       .table-container p{
-         display: none;
+         display: <%= noneNote %>;
       }
    </style>
+
  </div>
 
-    <button class="addNewBtn">Add new Category</button>
+  <button class="addNewBtn" onclick="
+    document.querySelector('.addNewBtn').style.display = 'none';
+    document.querySelector('.addNewCategory').style.display = 'flex';
+  ">Add new Category</button>
+
+    <div class="addNewCategory">
+      <form action="POST">
+         <label for="Name">Category Name: </label>
+        <input type="text" id="Name" placeholder="Enter Name">
+        <button type="submit">Add</button>
+      </form>         
+   </div>
