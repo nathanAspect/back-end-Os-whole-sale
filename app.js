@@ -112,6 +112,28 @@ app.route('/dashboard/categories')
       console.log(err);
    })
 })
+//the adding new category is handled here
+.post(lib.validateCookie, (req, res)=>{
+   const name = req.body.Name;
+   db.isNameAvailable('category', name)
+   .then(result=>{
+      if(result===false){
+         res.json(result)
+      } else{
+         db.addNewCategory(name, req.user.adminId)
+         .then(result=>{
+            if(result.affectedRows){
+               res.json(true);
+            } else{
+               res.json(false);
+            }
+         })
+         .catch(error=>{
+            console.log(error);
+         })
+      }
+   })
+})
 
 app.route('/dashboard/products')
 .get(lib.validateCookie, (req, res)=>{
@@ -145,6 +167,16 @@ app.route('/dashboard/account')
    }
 
    res.render('dashboard', { presentContent: 'account.ejs' ,displayValue: display, userName: req.user.adminId});
+})
+
+app.get('/tool/getcategory', lib.validateCookie, (req, res)=>{
+   db.adminCategory('category', req.user.adminId, 'admin')
+   .then(result=>{
+      res.json(result)
+   })
+   .catch(err=>{
+      console.log(err);
+   })
 })
 //admin server ends here
 

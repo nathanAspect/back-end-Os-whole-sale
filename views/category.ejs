@@ -53,9 +53,10 @@
   ">Add new Category</button>
 
     <div class="addNewCategory">
-      <form action="POST">
+      <form>
          <label for="Name">Category Name: </label>
-        <input type="text" id="Name" placeholder="Enter Name">
-        <button type="submit">Add</button>
+        <input type="text" id="Name" name="categoryName" placeholder="Enter Name" class="inputName">
+        <p class="errorNote">Try different name!</p>
+        <button type="submit" >Add</button>
       </form>         
    </div>

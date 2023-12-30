@@ -1,51 +1,107 @@
-<div class="table-container">
-  <table>
-    <thead>
-      <tr class="table-header">
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Redirect</th>
-        <th>Category</th>
-      </tr>
-    </thead>
-    <tbody>
-
-
-
-
-     <% for(let i=0; i<list.length; i++){ %>
-       <tr class="tableRow">
-         <td> <%= list[i].name %> </td>
-         <td> <%= list[i].Price %> </td>
-         <td> <%= list[i].Qunitity %> </td>
-         <td> <%= list[i].visit %> </td>
-         <td> <%= list[i].Category %> </td>
-       </tr class="tableRow">
-     <% } %>
-
-
-
-
-
-
-      <!-- <tr class="tableRow">
-        <td>Row 1, Cell 1</td>
-        <td>Row 1, Cell 2</td>
-        <td>Row 1, Cell 3</td>
-        <td>Row 1, Cell 4</td>
-      </tr class="tableRow"> -->
-      
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+<div class="HolderForTheShow">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr class="table-header">
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Redirect</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
   
-  <p>No Product found!</p>
-  <style>
-     .table-container p{
-        display: <%= noneNote %>;
-     }
-  </style>
+  
+  
+  
+       <% for(let i=0; i<list.length; i++){ %>
+         <tr class="tableRow">
+           <td> <%= list[i].name %> </td>
+           <td> <%= list[i].Price %> </td>
+           <td> <%= list[i].Qunitity %> </td>
+           <td> <%= list[i].visit %> </td>
+           <td> <%= list[i].Category %> </td>
+         </tr class="tableRow">
+       <% } %>
+  
+  
+  
+      </tbody>
+    </table>
+    
+    <p>No Product found!</p>
+    <style>
+       .table-container p{
+          display: <%= noneNote %>;
+       }
+    </style>
+  </div>
+  
+     <button class="addNewBtn" id="addNewProductBtn" >Add new Product</button>     
+  
 </div>
 
-   <button class="addNewBtn">Add new Product</button>
+
+<div class="productFormHolder">
+  <form class="productForm">
+    <label for="PName">Name: </label>
+    <input type="text" name="PName" id="PName" placeholder="Name" class="productTextInput">
+
+    <label for="PPrice">Price: </label>
+    <input type="text" name="PPrice" id="PPrice" placeholder="Price" class="productTextInput">
+
+    <label for="PQuantity">Quantity: </label>
+    <input type="text" name="PQuantity" id="PQuantity" placeholder="Quantity" class="productTextInput">
+
+    <label for="PImage">Image: </label>
+    <input type="file" name="PImage" id="PImage" placeholder="Image" class="productFileInput">
+
+    <label for="PLink">Link: </label>
+    <input type="text" name="PLink" id="PLink" placeholder="Redirect link" class="productTextInput">
+
+    <label for="PCategory">Category: </label>
+    <select name="PCategory" id="PCategory" class="productSelectionInput">
+      <option value="" disabled selected style="display: none;">Select Category</option>
+    </select>
+
+    <p class="errorProduct">Fill all the Information!</p>
+
+    <button type="submit" class="productSubmitBtn" id="addProduct"
+    onclick="
+      const addNewProduct = document.querySelector('.addProduct');
+      const Pname = document.querySelector('#PName');
+      const Pprice = document.querySelector('#PPrice');
+      const Pquantity = document.querySelector('#PQuantity');
+      const Pimage = document.querySelector('#PImage');
+      const Plink = document.querySelector('#PLink');
+      const PCategory = document.querySelector('#PCategory');
+      event.preventDefault();
+      if(Pname.value===''||Pprice.value===''||Pquantity===''||Pimage.files.length===0||Plink.value===''||Pcategory.value===''){
+         document.querySelector('.errorProduct').style.opacity = 1;
+         Pname.classList.toggle('redbackground');
+         Pprice.classList.toggle('redbackground');
+         Pquantity.classList.toggle('redbackground');
+         Plink.classList.toggle('redbackground');
+         setTimeout(()=>{
+          document.querySelector('.errorProduct').style.opacity = 0;
+          Pname.classList.toggle('redbackground');
+          Pprice.classList.toggle('redbackground');
+          Pquantity.classList.toggle('redbackground');
+          Plink.classList.toggle('redbackground');
+         }, 2000);
+
+      } else{
+        fetch(url + '/login', {
+          method: 'POST',
+          body: JSON.stringify({ name: Pname.value, password: password1 }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+          })
+      }
+    "
+    >Add</button>
+  </form>
+
+</div>

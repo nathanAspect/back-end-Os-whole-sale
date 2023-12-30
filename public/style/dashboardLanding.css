@@ -290,10 +290,18 @@ body{
    align-items: center;
 }
 
-.addNewCategory form input{
+.addNewCategory form{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+
+
+.inputName{
    margin-left: 10px;
-   border: none;
    outline: none;
+   border: 1px solid rgb(231, 231, 231);
    background-color: rgb(231, 231, 231);
    height: 40px;
    width: 300px;
@@ -302,21 +310,112 @@ body{
    border-radius: 20px 0 0 20px;
 }
 
-.addNewCategory form input:focus{
-   outline:1px solid rgb(76, 110, 248);
+.inputName:focus{
+   border:1px solid rgb(76, 110, 248);
 }
 
 .addNewCategory form button{
    border: none;
-   height: 40px;
+   height: 42px;
    border-radius: 0 20px 20px 0;
    background-color: rgb(76, 110, 248);
    padding: 10px;
+   margin-left: -1px;
    font-size: 17px;
    color: white;
-   margin-left: -5px;
 }
 
 .addNewCategory form button:hover{
    background-color: rgba(29, 29, 29, 0.856);
+}
+
+.errorNote{
+   position: absolute;
+   margin: 0 auto;
+   bottom: -19px;
+   right: 55px;
+   font-size: 15px;
+   color: rgb(185, 2, 2);
+   display: block;
+   opacity: 0;
+}
+
+.redError{
+   border: 1px solid rgb(185, 2, 2);
+}
+
+/* the product form starts here */
+.productFormHolder{
+   display: none;
+}
+.productForm{
+   display: grid;
+   grid-template-columns: 100px 300px;
+   grid-row-gap: 20px;
+   grid-column-gap: 5px;
+   position: relative;
+}
+
+.productTextInput{
+   border: 1px solid rgb(231, 231, 231);
+   outline: none;
+   background-color: rgb(231, 231, 231);
+   border-radius: 15px;
+   height: 30px;
+   padding: 10px;
+   font-size: 16px;
+}
+
+.productTextInput:focus{
+   border: 1px solid rgb(76, 110, 248);
+}
+
+.productSelectionInput{
+   border: 1px solid rgb(231, 231, 231);
+   outline: none;
+   height: 30px;
+   font-size: 16px;
+}
+
+.productSelectionInput:focus{
+   border: 1px solid rgb(76, 110, 248);
+}
+
+.productFileInput{
+   border: 1px solid rgb(231, 231, 231);
+   border-radius: 15px;
+   background-color: rgb(231, 231, 231);
+   outline: none;
+   height: 30px;
+   padding: 0 10px;
+   font-size: 16px;
+}
+
+.productSubmitBtn{
+   border: none;
+   background-color: rgb(76, 110, 248);
+   font-size: 18px;
+   color: white;
+   border-radius: 0 0 0 15px;
+   padding: 10px 30px;
+   margin: 20px auto;
+}
+
+.productSubmitBtn:hover{
+   background-color: rgba(29, 29, 29, 0.856);
+}
+
+.errorProduct{
+   position: absolute;
+   bottom: 80px;
+   left: 120px;
+   margin: 0 auto;
+   font-size: 15px;
+   color: rgb(185, 2, 2);
+   display: block;
+   opacity: 0;
+}
+
+.redbackground{
+   border: 1px solid rgb(185, 2, 2);
 }

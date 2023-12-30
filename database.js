@@ -148,14 +148,37 @@ function getAdminProducts(admin){
     }
   })
 }
-// adminCategory('category', 'nati')
-// .then(result=>{
-//   console.log(result)
-// })
-// .catch(err=>{
-//   console.log(err);
-// })
-// getAdminProducts('nati')
+
+//adding new category
+function addNewCategory(category, admin){
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [row] = await connection.query('insert into category values(?,?,0);',[category, admin]);
+      connection.release();
+      resolve(row);
+    } catch(error){
+      reject(error);
+    }
+  })
+}
+
+//function to check if the name is available
+function isNameAvailable(table, name){
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [row] = await connection.query('select * from ?? where name = ?',[table, name]);
+      connection.release();
+      row.length === 0 ? resolve(true) : resolve(false);
+    } catch(error){
+      reject(error);
+    }
+  })
+}
+
+
+// isNameAvailable('category', 'drug')
 // .then(res=>{
 //   console.log(res)
 // })
@@ -172,5 +195,7 @@ function getAdminProducts(admin){
    itemCount,
    adminCategory,
    getTotalRedirect,
-   getAdminProducts
+   getAdminProducts,
+   addNewCategory,
+   isNameAvailable
  }
