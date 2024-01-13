@@ -5,6 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./database.js");
 const lib = require("./library.js");
+const tool = require("./tools.js");
 const cors = require('cors');
 //const { response } = require('express');
 const path = require('path');
@@ -51,7 +52,7 @@ app.route('/login')
             }
       }
    })
-   .catch(err=>{
+   .catch(()=>{
       res.json({response: -1});
    })
 })
@@ -71,7 +72,15 @@ app.route('/dashboard')
       display = 'none';
    }
 
-   res.render('dashboard', { presentContent: 'dashboardContent.ejs' ,displayValue: display, userName: req.user.adminId});
+   // tool.adminCateNumber(req.user.adminId)
+   // .then(res=>{
+
+   // })
+   // .catch(err=>{
+   //    console.log(err);
+   // })
+
+   res.render('dashboard', { presentContent: 'dashboardContent.ejs' ,displayValue: display, userName: req.user.adminId, userStatus: req.user.status});
 })
 
 app.route('/dashboard/categories')
@@ -86,7 +95,7 @@ app.route('/dashboard/categories')
    db.adminCategory('category', req.user.adminId, 'admin')
    .then(list=>{
       if(list.length===0){
-         return res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'block' });
+         return res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId, userStatus: req.user.status, noneNote: 'block' });
       }
       const promises = [];
 
@@ -102,7 +111,7 @@ app.route('/dashboard/categories')
       }
       Promise.all(promises)
       .then(()=>{
-         res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'none' });
+         res.render('dashboard', { presentContent: 'category.ejs', list: list,displayValue: display, userName: req.user.adminId, userStatus: req.user.status, noneNote: 'none' });
       })
       .catch(err=>{
          console.log(err);
@@ -146,9 +155,9 @@ app.route('/dashboard/products')
    db.getAdminProducts(req.user.adminId)
    .then(list=>{
       if(list.length===0){
-         return res.render('dashboard', { presentContent: 'product.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'block' });
+         return res.render('dashboard', { presentContent: 'product.ejs', list: list,displayValue: display, userName: req.user.adminId, userStatus: req.user.status, noneNote: 'block' });
       }
-      res.render('dashboard', { presentContent: 'product.ejs', list: list,displayValue: display, userName: req.user.adminId, noneNote: 'none' });
+      res.render('dashboard', { presentContent: 'product.ejs', list: list,displayValue: display, userName: req.user.adminId, userStatus: req.user.status, noneNote: 'none' });
    })
    .catch(err=>{
       console.log(err);
@@ -156,6 +165,14 @@ app.route('/dashboard/products')
 
    // res.render('dashboard', { presentContent: 'product.ejs' ,displayValue: display, userName: req.user.adminId});
 })
+.post(lib.validateCookie, (req, res)=>{
+   const data = req.body;
+   console.log(data);
+})
+
+
+
+
 
 app.route('/dashboard/account')
 .get(lib.validateCookie, (req, res)=>{
@@ -166,7 +183,7 @@ app.route('/dashboard/account')
       display = 'none';
    }
 
-   res.render('dashboard', { presentContent: 'account.ejs' ,displayValue: display, userName: req.user.adminId});
+   res.render('dashboard', { presentContent: 'account.ejs' ,displayValue: display, userName: req.user.adminId, userStatus: req.user.status,});
 })
 
 app.get('/tool/getcategory', lib.validateCookie, (req, res)=>{

@@ -187,10 +187,23 @@ body{
    display: flex;
 }
 
+.profilePop div{
+   display: flex;
+   justify-content: start;
+   align-items: center;
+}
+
 .profilePop p{
    color: rgba(0, 0, 0, 0.692);
-   font-size: 19px;
+   font-size: 20px;
    text-align: center;
+}
+
+.profilePop span{
+   color: rgb(29, 38, 114);
+   font-size: 14px;
+   padding: 0 3px;
+   border-radius: 3px;
 }
 
 .profilePop a{
@@ -418,4 +431,57 @@ body{
 
 .redbackground{
    border: 1px solid rgb(185, 2, 2);
+}
+
+/* dashboard content style starts here */
+
+
+.dashboardContent{
+   display: grid;
+   padding: 50px;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: 40px;
+   place-content: center;
+}
+
+.dashBoardTitle{
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.dashboardCards{
+   height: 200px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
+   border-radius: 8px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: start;
+   padding: 30px;
+}
+
+.cardTags{
+   font-size: 18px;
+   color: rgba(53, 53, 53, 0.733);
+}
+
+.cardResult{
+   font-size: 35px;
+   color: rgba(29, 29, 29, 0.856);
+}
+
+.secondCard{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.centerCard{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }

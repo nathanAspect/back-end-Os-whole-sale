@@ -143,21 +143,46 @@
             }, 2000);
 
           } else{
-            // fetch(url + '/login', {
-            //   method: 'POST',
-            //   body: JSON.stringify({ name: Pname.value, category: Pcategory.value, price: Pprice.value, measure: Pmeasure.value,
-            //   quantity: Pquantity.value,
-            //   link: Plink.value,
-            //   image: 
-            //   }),
-            //   headers: {
-            //     'Content-Type': 'application/json'
-            //   }
-            // })
+            const formData = new FormData();
+            console.log(formData);
+            formData.append('file', Pimage.files[0]);
+            console.log(formData);
+            // formData.append('Info', 
+            // JSON.stringify({
+            //     name: Pname.value,
+            //     price: Pprice.value,
+            //     measure: Pmeasure.value,
+            //     quantity: Pquantity.value,
+            //     category: Pcategory.value,
+            //     phoneNumber: Pphone.value,
+            //     link: Plink.value
+            //   }))
+
+              // console.log(Pimage.files[0]);
+
+              // fetch('/dashboard/products', {
+              //   method: 'POST',
+              //   headers: {
+              //     'Content-Type': 'multipart/form-data'
+              //   },
+              //   body: formData
+              // })
+              // .catch(console.error);
+            }
+
+            // console.log(
+            //     Pname.value,
+            //     Pprice.value,
+            //     Pmeasure.value,
+            //     Pquantity.value,
+            //     Pcategory.value,
+            //     Pphone.value,
+            //     Plink.value,
+            //     Pimage.files[0]
+            //     )
 
 
           }
-      }
     "
     >Add</button>
   </form>

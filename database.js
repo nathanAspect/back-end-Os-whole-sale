@@ -178,13 +178,7 @@ function isNameAvailable(table, name){
 }
 
 
-// isNameAvailable('category', 'drug')
-// .then(res=>{
-//   console.log(res)
-// })
-// .catch(err=>{
-//   console.log(err)
-// })
+
 
  
  module.exports = {

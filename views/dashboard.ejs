@@ -52,8 +52,11 @@
 
          <div class="profile">
             <img src="/resources/user.png" alt="user icon">
-            <div class="profilePop">
-               <p> <%= userName %> </p>
+            <div class="profilePop"> 
+               <div>
+                  <span style="margin-right: 5px;"> <%= userStatus %> </span>
+                  <p> <%= userName %> </p>
+               </div>              
                <a href="/logout" class="logout">Log out!</a>
             </div>
          </div>
