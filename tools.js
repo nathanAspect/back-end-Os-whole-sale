@@ -1,6 +1,6 @@
 const db = require("./database.js");
 
-function adminCateNumber(user){
+function adminNumber(user){
    return new Promise(async (resolve, reject)=>{
       try{
          let array = [];
@@ -10,6 +10,12 @@ function adminCateNumber(user){
          const arrayOfProduct = await db.getAdminProducts(user);
          array.push(arrayOfProduct.length);
 
+         const totalVisit = await db.AdminTotalVisit(user);
+         array.push(totalVisit);
+
+         const totalRedirect = await db.AdminTotalRedirect(user);
+         array.push(totalRedirect);
+
          resolve(array)
       } catch(err){
          reject(err);
@@ -17,14 +23,14 @@ function adminCateNumber(user){
    })
 }
 
-adminCateNumber('mom')
-.then(r=>{
-   console.log(r);
-})
-.catch(err=>{
-   console.log(err);
-})
+// adminCateNumber('nati')
+// .then(r=>{
+//    console.log(r);
+// })
+// .catch(err=>{
+//    console.log(err);
+// })
 
 module.exports = {
-   adminCateNumber
+   adminNumber
 }

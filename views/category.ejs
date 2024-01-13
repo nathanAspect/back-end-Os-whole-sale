@@ -1,11 +1,12 @@
 <div class="table-container">
-   <table>
+   <table class="cateTable">
      <thead>
        <tr class="table-header">
          <th>Category</th>
          <th>Owner</th>
          <th>Visit</th>
          <th>Total Visit</th>
+         <th>Delete</th>
        </tr>
      </thead>
      <tbody>
@@ -19,6 +20,7 @@
           <td> <%= list[i].Admin %> </td>
           <td> <%= list[i].Visit %> </td>
           <td> <%= list[i].totalVisit %> </td>
+          <td> <img class="iconTable" src="/resources/delete.png" > </td>
         </tr class="tableRow">
       <% } %>
 
@@ -27,14 +29,7 @@
 
 
 
-       <!-- <tr class="tableRow">
-         <td>Row 1, Cell 1</td>
-         <td>Row 1, Cell 2</td>
-         <td>Row 1, Cell 3</td>
-         <td>Row 1, Cell 4</td>
-       </tr class="tableRow"> -->
-       
-       <!-- Add more rows as needed -->
+
      </tbody>
    </table>
    
@@ -60,3 +55,17 @@
         <button type="submit" >Add</button>
       </form>         
    </div>
+
+<!-- the editing option starts here -->
+
+<div class="categoryDelete">
+  <div class="catePopUp">
+    <p>All the PRODUCTS under this category will be DELETED!</p>
+    <div class="buttons">
+      <button class="yesDelete optionBtn">Delete</button>
+      <button class="noDelete optionBtn" onclick="
+      document.querySelector('.categoryDelete').style.display = 'none';
+      ">Cancel</button>
+    </div>
+  </div>
+</div>

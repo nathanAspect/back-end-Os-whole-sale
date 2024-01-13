@@ -44,6 +44,40 @@ if(addNewCate){
    })
 }
 
+//the categories table responsiveness starts here
+// const table = document.querySelector('.cateTable');
+// if(table.getElementsByTagName('tr')){
+//    const rows = table.getElementsByTagName('tr');
+   
+//    for (let i = 0; i < rows.length; i++) {
+//       const row = rows[i];
+//       const cells = row.getElementsByTagName('td');
+    
+//       if(cells.length !== 0){
+//          cells[4].addEventListener('click', function() {
+//          console.log('The edit button clicked');
+//          });
+      
+//          cells[5].addEventListener('click', function() {
+//          console.log('The delete button clicked');
+//          });
+//       }
+//     }
+//    }   
+
+
+
+
+
+////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
 //the product script goes here
 const addProductBtn = document.querySelector('#addNewProductBtn');
 const Pcategory = document.querySelector('#PCategory');
@@ -69,19 +103,3 @@ addProductBtn.addEventListener('click', ()=>{
 
 }
 
-//the adding product script starts here
-// const addNewProduct = document.querySelector('.addProduct');
-// const Pname = document.querySelector('#PName');
-// const Pprice = document.querySelector('#PPrice');
-// const Pquantity = document.querySelector('#PQuantity');
-// const Pimage = document.querySelector('#PImage');
-// const Plink = document.querySelector('#PLink');
-// const PCategory = document.querySelector('#PCategory');
-
-
-//    addNewProduct.addEventListener('submit', (event)=>{
-//       event.preventDefault();
-//       if(Pname.value===''||Pprice.value===''||Pquantity===''||Pimage.files.length===0||Plink.value===''||Pcategory.value===''){
-//          console.log('something is empty');
-//       }
-//    })

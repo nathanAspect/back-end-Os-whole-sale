@@ -177,6 +177,44 @@ function isNameAvailable(table, name){
   })
 }
 
+//getting the total visit count of the product under the admin 
+function AdminTotalVisit(admin){
+  const queryString = 'SELECT SUM(p.visit) AS total_visits FROM Product p JOIN category c ON p.Category = c.name JOIN admin a ON c.Admin = a.name WHERE a.name = ?;'
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [[row]] = await connection.query(queryString,[admin])
+      connection.release();
+      resolve(Number(row.total_visits));
+    } catch(err){
+      reject(err);
+    }
+  })
+}
+
+//getting the total redirect count of the product under the admin
+function AdminTotalRedirect(admin){
+  const queryString = 'SELECT SUM(p.redirect) AS total_redirect FROM Product p JOIN category c ON p.Category = c.name JOIN admin a ON c.Admin = a.name WHERE a.name = ?;'
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const [[row]] = await connection.query(queryString,[admin])
+      connection.release();
+      resolve(Number(row.total_redirect));
+    } catch(err){
+      reject(err);
+    }
+  })
+}
+
+// AdminTotalRedirect('mom')
+// .then(res=>{
+//   console.log(res)
+// })
+// .catch(err=>{
+//   console.log(err);
+// })
+
 
 
 
@@ -191,5 +229,7 @@ function isNameAvailable(table, name){
    getTotalRedirect,
    getAdminProducts,
    addNewCategory,
-   isNameAvailable
+   isNameAvailable,
+   AdminTotalVisit,
+   AdminTotalRedirect
  }

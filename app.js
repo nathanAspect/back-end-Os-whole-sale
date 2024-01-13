@@ -72,15 +72,28 @@ app.route('/dashboard')
       display = 'none';
    }
 
-   // tool.adminCateNumber(req.user.adminId)
-   // .then(res=>{
+   tool.adminNumber(req.user.adminId)
+   .then(result=>{
+      res.render('dashboard', { 
+         presentContent: 'dashboardContent.ejs' ,
+         displayValue: display, 
+         totalCate: result[0],
+         totalPro: result[1],
+         totalVisit: result[2],
+         totalRedirect: result[3],
+         userName: req.user.adminId, 
+         userStatus: req.user.status
+      });
+   })
+   .catch(err=>{
+      console.log(err);
+   })
 
-   // })
-   // .catch(err=>{
-   //    console.log(err);
-   // })
-
-   res.render('dashboard', { presentContent: 'dashboardContent.ejs' ,displayValue: display, userName: req.user.adminId, userStatus: req.user.status});
+   // res.render('dashboard', { 
+   //    presentContent: 'dashboardContent.ejs' ,
+   //    displayValue: display, userName: req.user.adminId, 
+   //    userStatus: req.user.status
+   // });
 })
 
 app.route('/dashboard/categories')

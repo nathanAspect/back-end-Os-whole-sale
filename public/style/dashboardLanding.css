@@ -245,6 +245,7 @@ body{
 .table-container {
    max-height: 300px;
    overflow-y: auto;
+   display: block;
  }
 
  table {
@@ -289,6 +290,7 @@ body{
    border-radius: 0 0 0 15px;
    padding: 10px;
    margin: 20px auto;
+   display: block;
 }
 
 .addNewBtn:hover{
@@ -484,4 +486,74 @@ body{
    flex-direction: column;
    justify-content: center;
    align-items: center;
+}
+
+/* a class for the image icon in the table */
+
+.iconTable{
+   width: 25px;
+   opacity: .7;
+}
+
+/* the pop up for the delete option starts here */
+
+.categoryDelete{
+   position: fixed;
+   top: 0;
+   right: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.137);
+   backdrop-filter: blur(5px);
+   z-index: 1000;
+}
+
+.catePopUp{
+   position: absolute;
+   top: 50%;
+   right: 50%;
+   transform: translate(50%, -50%);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: white;
+   box-shadow: 0 0 15px rgba(0, 0, 0, 0.281);
+   width: 500px;
+   height: 180px;
+   padding: 30px;
+   border-radius: 8px;
+}
+
+.catePopUp p{
+   text-align: center;
+   margin: 0 5px 30px;
+   font-size: 20px;
+}
+
+.catePopUp .buttons{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.optionBtn{
+   border: none;
+   margin: 0 30px;
+   padding: 8px;
+   font-size: 15px;
+   border-radius: 5px;
+   color: white;
+}
+
+.optionBtn:hover{
+   opacity: .6;
+}
+
+.yesDelete{
+   background-color: rgb(255, 105, 105);
+}
+
+.noDelete{
+   background-color: rgba(0, 128, 0, 0.562);
 }
