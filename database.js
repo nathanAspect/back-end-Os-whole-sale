@@ -136,7 +136,7 @@ function getTotalRedirect(category){
 
 //function that gets all the products related to the admin
 function getAdminProducts(admin){
-  const queryString = 'SELECT Product.name, Product.Category, Product.Price, Product.Qunitity, Product.visit FROM Product INNER JOIN category ON Product.Category = category.name INNER JOIN admin ON category.Admin = admin.name WHERE admin.name = ?;'
+  const queryString = 'SELECT Product.* FROM Product INNER JOIN category ON Product.Category = category.name INNER JOIN admin ON category.Admin = admin.name WHERE admin.name = ?;'
   return new Promise(async (resolve, reject)=>{
     try{
       const connection = await pool.getConnection();

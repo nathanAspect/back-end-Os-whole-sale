@@ -188,7 +188,7 @@ app.get('/tool/getcategory', lib.validateCookie, (req, res)=>{
 
 
 //front customer page server set up here
-const displayCapacity = 5; //the display capacity goes here
+const displayCapacity = 3; //the display capacity goes here
 
 app.route('/')
 .get((req, res)=>{

@@ -5,9 +5,13 @@
         <tr class="table-header">
           <th>Product</th>
           <th>Price</th>
+          <th>Measure</th>
           <th>Quantity</th>
+          <th>Visit</th>
           <th>Redirect</th>
           <th>Category</th>
+          <th>Phone Number</th>
+          <th>Link</th>
         </tr>
       </thead>
       <tbody>
@@ -19,9 +23,14 @@
          <tr class="tableRow">
            <td> <%= list[i].name %> </td>
            <td> <%= list[i].Price %> </td>
+           <td> <%= list[i].Measure %> </td>
            <td> <%= list[i].Qunitity %> </td>
            <td> <%= list[i].visit %> </td>
+           <td> <%= list[i].Redirect %> </td>
            <td> <%= list[i].Category %> </td>
+           <td> <%= list[i].PhoneNumber %> </td>
+           <td> <%= list[i].Link %> </td>
+
          </tr class="tableRow">
        <% } %>
   
@@ -51,19 +60,29 @@
     <label for="PPrice">Price: </label>
     <input type="text" name="PPrice" id="PPrice" placeholder="Price" class="productTextInput">
 
+    <label for="PMeasure">Measure: </label>
+    <select name="PMeasure" id="PMeasure" class="productSelectionInput">
+      <option value="Pack">Pack</option>
+      <option value="Kilo Gram">Kilo Gram</option>
+      <option value="Litre">Litre</option>
+    </select>
+
     <label for="PQuantity">Quantity: </label>
     <input type="text" name="PQuantity" id="PQuantity" placeholder="Quantity" class="productTextInput">
-
-    <label for="PImage">Image: </label>
-    <input type="file" name="PImage" id="PImage" placeholder="Image" class="productFileInput">
-
-    <label for="PLink">Link: </label>
-    <input type="text" name="PLink" id="PLink" placeholder="Redirect link" class="productTextInput">
 
     <label for="PCategory">Category: </label>
     <select name="PCategory" id="PCategory" class="productSelectionInput">
       <option value="" disabled selected style="display: none;">Select Category</option>
     </select>
+
+    <label for="PPhone">Phone Number: </label>
+    <input type="text" name="PPhone" id="PPhone" placeholder="Phone Number" class="productTextInput">
+
+    <label for="PLink">Link: </label>
+    <input type="text" name="PLink" id="PLink" placeholder="Telegram Link" class="productTextInput">
+
+    <label for="PImage">Image: </label>
+    <input type="file" name="PImage" id="PImage" class="productFileInput">
 
     <p class="errorProduct">Fill all the Information!</p>
 
@@ -72,33 +91,72 @@
       const addNewProduct = document.querySelector('.addProduct');
       const Pname = document.querySelector('#PName');
       const Pprice = document.querySelector('#PPrice');
+      const Pmeasure = document.querySelector('#PMeasure');
       const Pquantity = document.querySelector('#PQuantity');
-      const Pimage = document.querySelector('#PImage');
+      const Pcategory = document.querySelector('#PCategory');
+      const Pphone = document.querySelector('#PPhone');
       const Plink = document.querySelector('#PLink');
-      const PCategory = document.querySelector('#PCategory');
+      const Pimage = document.querySelector('#PImage');
       event.preventDefault();
-      if(Pname.value===''||Pprice.value===''||Pquantity===''||Pimage.files.length===0||Plink.value===''||Pcategory.value===''){
+
+      if(Pname.value===''||Pprice.value===''||Pquantity.value===''||Pmeasure.value===''||Pimage.files.length===0||Plink.value===''||Pcategory.value===''||Pphone.value===''){
          document.querySelector('.errorProduct').style.opacity = 1;
+
          Pname.classList.toggle('redbackground');
          Pprice.classList.toggle('redbackground');
+         Pmeasure.classList.toggle('redbackground');
          Pquantity.classList.toggle('redbackground');
+         Pphone.classList.toggle('redbackground');
          Plink.classList.toggle('redbackground');
+
          setTimeout(()=>{
           document.querySelector('.errorProduct').style.opacity = 0;
           Pname.classList.toggle('redbackground');
           Pprice.classList.toggle('redbackground');
+          Pmeasure.classList.toggle('redbackground');
           Pquantity.classList.toggle('redbackground');
+          Pphone.classList.toggle('redbackground');
           Plink.classList.toggle('redbackground');
          }, 2000);
 
       } else{
-        fetch(url + '/login', {
-          method: 'POST',
-          body: JSON.stringify({ name: Pname.value, password: password1 }),
-          headers: {
-            'Content-Type': 'application/json'
+        const extension = Pimage.files[0].name.split('.').pop().toLowerCase();
+          if(extension!=='png' && extension!=='jpg' && extension!=='jpeg'){
+            
+            document.querySelector('.errorProduct').style.opacity = 1;
+
+            Pname.classList.toggle('redbackground');
+            Pprice.classList.toggle('redbackground');
+            Pmeasure.classList.toggle('redbackground');
+            Pquantity.classList.toggle('redbackground');
+            Pphone.classList.toggle('redbackground');
+            Plink.classList.toggle('redbackground');
+
+            setTimeout(()=>{
+              document.querySelector('.errorProduct').style.opacity = 0;
+              Pname.classList.toggle('redbackground');
+              Pprice.classList.toggle('redbackground');
+              Pmeasure.classList.toggle('redbackground');
+              Pquantity.classList.toggle('redbackground');
+              Pphone.classList.toggle('redbackground');
+              Plink.classList.toggle('redbackground');
+            }, 2000);
+
+          } else{
+            // fetch(url + '/login', {
+            //   method: 'POST',
+            //   body: JSON.stringify({ name: Pname.value, category: Pcategory.value, price: Pprice.value, measure: Pmeasure.value,
+            //   quantity: Pquantity.value,
+            //   link: Plink.value,
+            //   image: 
+            //   }),
+            //   headers: {
+            //     'Content-Type': 'application/json'
+            //   }
+            // })
+
+
           }
-          })
       }
     "
     >Add</button>
