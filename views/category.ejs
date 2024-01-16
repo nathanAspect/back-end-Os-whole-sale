@@ -9,6 +9,7 @@
          <th>Delete</th>
        </tr>
      </thead>
+
      <tbody>
 
 
@@ -16,12 +17,19 @@
 
       <% for(let i=0; i<list.length; i++){ %>
         <tr class="tableRow">
-          <td> <%= list[i].name %> </td>
+          <td class="PK"> <%= list[i].name %> </td>
           <td> <%= list[i].Admin %> </td>
           <td> <%= list[i].Visit %> </td>
           <td> <%= list[i].totalVisit %> </td>
-          <td> <img class="iconTable" src="/resources/delete.png" > </td>
-        </tr class="tableRow">
+          <td onclick="
+            var firstCell = this.parentNode.querySelector('.PK');
+            deleteThis(firstCell.textContent);      
+          "> 
+
+          <img class="iconTable" src="/resources/delete.png" > 
+        
+          </td>
+        </tr>
       <% } %>
 
 
@@ -49,7 +57,7 @@
 
     <div class="addNewCategory">
       <form>
-         <label for="Name">Category Name: </label>
+        <label for="Name">Category Name: </label>
         <input type="text" id="Name" name="categoryName" placeholder="Enter Name" class="inputName">
         <p class="errorNote">Try different name!</p>
         <button type="submit" >Add</button>
@@ -69,3 +77,41 @@
     </div>
   </div>
 </div>
+
+<script>
+  let elToBeDeleted = null;
+  function deleteThis(el) {
+    elToBeDeleted = el.slice(1);
+    document.querySelector('.categoryDelete').style.display = 'block';
+    document.querySelector('.yesDelete').addEventListener('click', deleting);
+  }
+
+  const deleting = () => {
+    // let n = 'the this>'+elToBeDeleted;
+
+    // console.log(n)
+    fetch('/tool/deletecategory', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ categoryToBeDeleted: elToBeDeleted })
+    })
+    .then(response=>response.json())
+    .then(data=>{
+      console.log(data);
+    }) .catch(err=>{
+      console.log(err);
+    })
+
+    
+    elToBeDeleted = null;
+
+    
+    
+
+    elToBeDeleted = null;
+    document.querySelector('.yesDelete').removeEventListener('click', deleting);
+    document.querySelector('.categoryDelete').style.display = 'none';
+  }
+</script>

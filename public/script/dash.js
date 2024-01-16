@@ -45,25 +45,6 @@ if(addNewCate){
 }
 
 //the categories table responsiveness starts here
-// const table = document.querySelector('.cateTable');
-// if(table.getElementsByTagName('tr')){
-//    const rows = table.getElementsByTagName('tr');
-   
-//    for (let i = 0; i < rows.length; i++) {
-//       const row = rows[i];
-//       const cells = row.getElementsByTagName('td');
-    
-//       if(cells.length !== 0){
-//          cells[4].addEventListener('click', function() {
-//          console.log('The edit button clicked');
-//          });
-      
-//          cells[5].addEventListener('click', function() {
-//          console.log('The delete button clicked');
-//          });
-//       }
-//     }
-//    }   
 
 
 

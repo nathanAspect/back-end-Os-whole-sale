@@ -6,7 +6,8 @@ const pool = mysql.createPool({
    host: process.env.local_host, 
    user: process.env.user, 
    password: process.env.password,
-   database: process.env.db
+   database: process.env.db,
+   multipleStatements: true
  });
 
  pool.getConnection((err, connection) => {
@@ -207,7 +208,23 @@ function AdminTotalRedirect(admin){
   })
 }
 
-// AdminTotalRedirect('mom')
+//deleting a categroy function
+function deleteCategory(category){
+  console.log(category)
+  const query = 'DELETE FROM product WHERE category = ?; DELETE FROM category WHERE name = ?;';
+  return new Promise(async (resolve, reject)=>{
+    try{
+      const connection = await pool.getConnection();
+      const result = await connection.query(query, [category, category]);
+      connection.release();
+      resolve(result);
+    } catch(err){
+      reject(err);
+    }
+  })
+}
+
+// deleteCategory('jjjj')
 // .then(res=>{
 //   console.log(res)
 // })
@@ -231,5 +248,6 @@ function AdminTotalRedirect(admin){
    addNewCategory,
    isNameAvailable,
    AdminTotalVisit,
-   AdminTotalRedirect
+   AdminTotalRedirect,
+   deleteCategory
  }

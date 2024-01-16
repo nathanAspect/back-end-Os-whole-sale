@@ -260,6 +260,7 @@ body{
    background-color: rgb(76, 110, 248);
    color: white;
    font-weight: bold;
+   z-index: 2;
  }
 
  th, td {
@@ -493,6 +494,7 @@ body{
 .iconTable{
    width: 25px;
    opacity: .7;
+   z-index: 1;
 }
 
 /* the pop up for the delete option starts here */
@@ -506,6 +508,7 @@ body{
    background-color: rgba(0, 0, 0, 0.137);
    backdrop-filter: blur(5px);
    z-index: 1000;
+   display: none;
 }
 
 .catePopUp{

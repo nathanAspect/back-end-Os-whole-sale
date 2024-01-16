@@ -88,12 +88,6 @@ app.route('/dashboard')
    .catch(err=>{
       console.log(err);
    })
-
-   // res.render('dashboard', { 
-   //    presentContent: 'dashboardContent.ejs' ,
-   //    displayValue: display, userName: req.user.adminId, 
-   //    userStatus: req.user.status
-   // });
 })
 
 app.route('/dashboard/categories')
@@ -208,6 +202,16 @@ app.get('/tool/getcategory', lib.validateCookie, (req, res)=>{
       console.log(err);
    })
 })
+
+//the listener to delelte a category
+app.delete('/tool/deletecategory', lib.validateCookie, (req, res)=>{
+   const categoryToBeDeleted = req.body.categoryToBeDeleted;
+   console.log(categoryToBeDeleted);
+   console.log('it is good here')
+   db.deleteCategory(categoryToBeDeleted)
+})
+
+
 //admin server ends here
 
 
